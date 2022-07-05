@@ -45,7 +45,8 @@ class _$HotelsRecordSerializer implements StructuredSerializer<HotelsRecord> {
     if (value != null) {
       result
         ..add('rating')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
     }
     value = object.reference;
     if (value != null) {
@@ -83,7 +84,7 @@ class _$HotelsRecordSerializer implements StructuredSerializer<HotelsRecord> {
           break;
         case 'rating':
           result.rating = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(double)) as double;
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
@@ -106,7 +107,7 @@ class _$HotelsRecord extends HotelsRecord {
   @override
   final String city;
   @override
-  final int rating;
+  final double rating;
   @override
   final DocumentReference<Object> reference;
 
@@ -173,9 +174,9 @@ class HotelsRecordBuilder
   String get city => _$this._city;
   set city(String city) => _$this._city = city;
 
-  int _rating;
-  int get rating => _$this._rating;
-  set rating(int rating) => _$this._rating = rating;
+  double _rating;
+  double get rating => _$this._rating;
+  set rating(double rating) => _$this._rating = rating;
 
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
