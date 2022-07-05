@@ -82,55 +82,63 @@ class _ReviewsListWidgetState extends State<ReviewsListWidget> {
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              StreamBuilder<List<ReviewsRecord>>(
-                stream: queryReviewsRecord(
-                  queryBuilder: (reviewsRecord) =>
-                      reviewsRecord.where('ref', isEqualTo: widget.hotelDocRef),
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: CircularProgressIndicator(
-                          color: FlutterFlowTheme.of(context).primaryColor,
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                StreamBuilder<List<ReviewsRecord>>(
+                  stream: queryReviewsRecord(
+                    queryBuilder: (reviewsRecord) => reviewsRecord.where('ref',
+                        isEqualTo: widget.hotelDocRef),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                          ),
                         ),
-                      ),
-                    );
-                  }
-                  List<ReviewsRecord> listViewReviewsRecordList = snapshot.data;
-                  return ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: listViewReviewsRecordList.length,
-                    itemBuilder: (context, listViewIndex) {
-                      final listViewReviewsRecord =
-                          listViewReviewsRecordList[listViewIndex];
-                      return Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            listViewReviewsRecord.title,
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
-                          Text(
-                            listViewReviewsRecord.description,
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
-                        ],
                       );
-                    },
-                  );
-                },
-              ),
-            ],
+                    }
+                    List<ReviewsRecord> listViewReviewsRecordList =
+                        snapshot.data;
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewReviewsRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewReviewsRecord =
+                            listViewReviewsRecordList[listViewIndex];
+                        return Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                listViewReviewsRecord.title,
+                                style: FlutterFlowTheme.of(context).bodyText1,
+                              ),
+                              Text(
+                                listViewReviewsRecord.description,
+                                style: FlutterFlowTheme.of(context).bodyText1,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

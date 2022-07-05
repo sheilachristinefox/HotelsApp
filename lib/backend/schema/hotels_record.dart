@@ -20,7 +20,7 @@ abstract class HotelsRecord
   String get city;
 
   @nullable
-  int get rating;
+  double get rating;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -30,7 +30,7 @@ abstract class HotelsRecord
     ..name = ''
     ..description = ''
     ..city = ''
-    ..rating = 0;
+    ..rating = 0.0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('Hotels');
@@ -57,7 +57,7 @@ Map<String, dynamic> createHotelsRecordData({
   String name,
   String description,
   String city,
-  int rating,
+  double rating,
 }) =>
     serializers.toFirestore(
         HotelsRecord.serializer,

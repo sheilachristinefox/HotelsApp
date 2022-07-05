@@ -69,7 +69,8 @@ class _HotelsListWidgetState extends State<HotelsListWidget> {
                           listViewHotelsRecordList[listViewIndex];
                       return Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           InkWell(
                             onTap: () async {
